@@ -5,26 +5,26 @@
 NGram模块的Segement类为主要分词模块。
 
 代码示例：
-···
+```
 # -*- coding:utf-8 -*-
 from NGram import Segment
 seg = Segment()
 print seg.cut(u"我爱北京天安门。")
 # output : 我 爱 北京 天安门 。
-···
+```
 ### 2.指定词典
 代码默认读取原始字典文件计算一元词和二元词，data文件夹中添加了json文件，其中包含了已统计好的词频等信息，时间更快，可在初始化Segment时进行指定
 代码示例：
-···
+```
 # -*- coding:utf-8 -*-
 from NGram import Segment
 seg = Segment(jsonData="data/DicData.json")
 print seg.cut(u"我爱北京天安门。")
 # output : 我 爱 北京 天安门 。
-···
+```
 ### 3.未登录词识别
 对未登录词，指定HMM分词
-···
+```
 # -*- coding:utf-8 -*-
 from NGram import Segment
 seg = Segment(jsonData="data/DicData.json")
@@ -32,7 +32,7 @@ print seg.cut(u"北邮距离北交很近。")
 # output ： 北 邮 距离 北 交 很 近 。
 print seg.cut(u"北邮距离北交很近。",HMM=True)
 # output ： 北邮 距离 北交 很 近 。
-···
+```
 ## 相关说明
 程序自带的字典使用了icwb2-data种的msr训练的语料库，对未登录词的概率计算中使用了Good-Turing平滑。对未登录词的识别，程序使用HMM提高识别精度，其中HMM部分借鉴结巴分词的相关代码。
 对一个句子的切分主要在Segment.cut()中实现，主要切分流程如下所示：
